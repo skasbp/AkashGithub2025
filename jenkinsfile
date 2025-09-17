@@ -11,3 +11,8 @@ pipeline {
 }
 
 echo "Welcome"
+ stages {
+        stage('Akash') {
+            steps {
+                echo 'Hello to home'
+            }
