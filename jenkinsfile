@@ -16,7 +16,7 @@ pipeline {
         stage ('Stages3') {
             agent { label 'SLAVE 2'}
             steps {
-                sh 'cat vcsfile.txt'
+                sh 'cat VCSfile.txt'
             }
         }
     }
