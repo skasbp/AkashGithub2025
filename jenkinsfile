@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Deploy') {
             agent {
-                label 'master'
+                label 'SLAVE 1'
             }
             steps {
                 sh 'ps -ef | grep java'
