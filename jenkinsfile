@@ -20,3 +20,34 @@ pipeline {
         }
     }
 }
+
+pipeline {
+    agent none
+    
+    stages {
+        stage('Build') {
+            agent {
+                label 'SLAVE 1' // Specify a specific agent label for this stage
+            }
+            steps {
+                sh 'docker build -t myapp .'
+            }
+        }
+        stage('Test') {
+            agent {
+                label 'SLAVE 2'
+            }
+            steps {
+                sh 'docker run myapp test'
+            }
+        }
+        stage('Deploy') {
+            agent {
+                label 'master'
+            }
+            steps {
+                sh 'docker push myapp:latest'
+            }
+        }
+    }
+}
