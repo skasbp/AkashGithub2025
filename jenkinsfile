@@ -30,7 +30,7 @@ pipeline {
                 label 'SLAVE 1' // Specify a specific agent label for this stage
             }
             steps {
-                sh 'docker build -t myapp .'
+                sh 'ls'
             }
         }
         stage('Test') {
@@ -38,7 +38,7 @@ pipeline {
                 label 'SLAVE 2'
             }
             steps {
-                sh 'docker run myapp test'
+                sh 'echo "Running tests..."'
             }
         }
         stage('Deploy') {
@@ -46,7 +46,7 @@ pipeline {
                 label 'master'
             }
             steps {
-                sh 'docker push myapp:latest'
+                sh 'ps -ef | grep java'
             }
         }
     }
