@@ -1,22 +1,45 @@
 pipeline {
-    agent { label 'SLAVE1'}
-    stages{
-        stage ('Stages1') {
-            step{
-                sh 'echo "Welcome t0 my world"'
-                sh 'ls -lart'
-                sh 'cat README.md'
+    agent { label 'SLAVE 2'}
+    stages {
+        stage('SLAVE 1') {
+            steps {
+                sh '''
+                   ls -lart
+                   pwd
+                   env
+                   sleep 2
+                '''
             }
         }
-        stages ('Stages2'){
-            step {
-                sh 'echo "it is a stages 2 phase"'
+        stage('SLAVE 2') {  
+            steps{
+                sh '''
+                   sleep 5
+                '''
             }
         }
-        stage ('Stages3){
-            agent { label 'SLAVE 2'}
-            step {
-                sh '
+        stage('Build') {
+            agent {
+                label 'SLAVE 1' // Specify a specific agent label for this stage
+            }
+            steps {
+                sh 'ls'
+            }
+        }
+        stage('Test') {
+            agent {
+                label 'SLAVE 2'
+            }
+            steps {
+                sh 'echo "Running tests..."'
+            }
+        }
+        stage('Deploy') {
+            agent {
+                label 'SLAVE 1'
+            }
+            steps {
+                sh 'ps -ef | grep java'
             }
         }
     }
