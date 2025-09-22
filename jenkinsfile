@@ -25,15 +25,19 @@ pipeline {
             parallel {
                 stage ('Task 1') {
                     steps {
-                        sh 'echo "This is task 1"'
+                        sh '''
+                            echo "This is task 1"
                             ls -lrt
+                        '''
                     }
                 }
                 stage ('Task 2') {
                     steps {
-                        sh 'echo "This is task 2"'
+                        sh '''
+                            echo "This is task 2"
                             pwd
                             find ./ -type f -iname 'w*.txt' | cat
+                        '''
                     }
                 }
             }
