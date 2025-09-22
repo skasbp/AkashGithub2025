@@ -10,7 +10,7 @@ pipeline {
         stage ('Build'){
             steps {
                 sh 'echo $pwd'
-                    'ls -lrt'
+                sh 'ls -lrt'
             }
         }
         stage ('Stages3') {
