@@ -7,7 +7,7 @@ pipeline {
                 sh 'echo "Welcome to my world"'
             }
         }
-        stage ('Build'){
+        stage ('Build 1'){
             steps {
                 sh '''
                     pwd
@@ -15,10 +15,27 @@ pipeline {
                 '''
             }
         }
-        stage ('Stages3') {
+        stage ('Build 2') {
             agent { label 'SLAVE 2'}
             steps {
                 sh 'cat VCSfile.txt'
+            }
+        }
+        stage ('building Parallel tasks') {
+            parallel {
+                stage ('Task 1') {
+                    steps {
+                        sh 'echo "This is task 1"'
+                            ls -lrt
+                    }
+                }
+                stage ('Task 2') {
+                    steps {
+                        sh 'echo "This is task 2"'
+                            pwd
+                            find ./ -type f -iname 'w*.txt' | cat
+                    }
+                }
             }
         }
     }
