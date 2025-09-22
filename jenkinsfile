@@ -28,6 +28,7 @@ pipeline {
                         sh '''
                             echo "This is task 1"
                             ls -lrt
+                            sleep 10
                         '''
                     }
                 }
@@ -36,7 +37,9 @@ pipeline {
                         sh '''
                             echo "This is task 2"
                             pwd
-                            find ./ -type f -iname 'w*.txt' | cat
+                            find ./ -type f -iname 'w*.txt'
+                            cat pipeline.txt
+                            sleep 5
                         '''
                     }
                 }
