@@ -1,16 +1,16 @@
 pipeline {
-    agent { label 'SLAVE 1'}
+    agent any
     stages{
-        stage ('Stages1') {
+        stage ('Checkout'){
             steps {
+                git branch: 'main', credentialsId: 'Akash@1994', url: 'https://github.com/skasbp/AkashGithub2025.git'
                 sh 'echo "Welcome t0 my world"'
-                sh 'ls -lart'
-                sh 'cat README.md'
             }
         }
-        stage ('Stages2'){
+        stage ('Build'){
             steps {
-                sh 'echo "it is a stages 2 phase"'
+                sh 'echo $pwd'
+                    'ls -lrt'
             }
         }
         stage ('Stages3') {

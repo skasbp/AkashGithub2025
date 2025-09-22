@@ -44,3 +44,29 @@ pipeline {
         }
     }
 }
+
+
+#NEW pipeline
+pipeline {
+    agent { label 'SLAVE 1'}
+    stages{
+        stage ('Stages1') {
+            steps {
+                sh 'echo "Welcome t0 my world"'
+                sh 'ls -lart'
+                sh 'cat README.md'
+            }
+        }
+        stage ('Stages2'){
+            steps {
+                sh 'echo "it is a stages 2 phase"'
+            }
+        }
+        stage ('Stages3') {
+            agent { label 'SLAVE 2'}
+            steps {
+                sh 'cat VCSfile.txt'
+            }
+        }
+    }
+}
