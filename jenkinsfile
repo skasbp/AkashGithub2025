@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        ABCD = "This is my first jenkins pipeline"
+        TARGET = "DevOps Engineer"
+    }
     stages{
         stage ('Checkout'){
             steps {
@@ -41,6 +45,20 @@ pipeline {
                             cat pipeline.txt
                             sleep 5
                         '''
+                    }
+                }
+                stage ('Groovy Syntax') {
+                    steps {
+                        sh "echo ${env.ABCD}"
+                        sh "echo ${env.TARGET}"
+                    }
+                }
+                stage ('Linux Syntax') {
+                    steps {
+                        sh '''
+                            echo $ABCD
+                            echo $TARGET
+                            '''
                     }
                 }
             }
