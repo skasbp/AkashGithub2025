@@ -24,7 +24,11 @@ pipeline {
     stages{
         stage ('Checkout'){
             steps {
-                (git branch: 'main', credentialsId: 'Akash@1994', url: 'https://github.com/skasbp/AkashGithub2025.git')
+                git (
+                    branch: 'main', 
+                    credentialsId: 'Akash@1994', 
+                    url: 'https://github.com/skasbp/AkashGithub2025.git'
+                )
                 sh 'echo "Welcome to my world"'
 
             }
