@@ -71,9 +71,9 @@ pipeline {
                 }
                 stage ('Groovy Syntax') {
                     steps {
-                        Branch: "${env.CHECKOUT_BRNACH}",
-                        Credentials: "${env.GIT_CREDS}",
-                        giturl: "${params.GIT_PARAM_URL}"
+                        sh "echo Branch: ${env.CHECKOUT_BRNACH}"
+                        sh "echo Credentials: ${env.GIT_CREDS}"
+                        sh "echo giturl: ${params.GIT_PARAM_URL}"
                     }
                 }
                 stage ('Linux Syntax') {
