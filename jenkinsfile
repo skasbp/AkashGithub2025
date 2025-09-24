@@ -47,6 +47,18 @@ pipeline {
                 sh 'cat VCSfile.txt'
             }
         }
+        stage ('Checking Errors for next stage') {
+            steps {
+                echo "This is an empty stage"
+            }
+        stage ('CATCHERRO') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'exit 1'
+                }
+            }
+        }
+        }
         stage ('building Parallel tasks') {
             parallel {
                 stage ('Task 1') {
