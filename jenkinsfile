@@ -59,6 +59,21 @@ pipeline {
                 }
             }
         }
+        stage ('checking TRY CATCH ERROR') {
+            steps{
+                script {
+                    try {
+                        sh 'echo "Hello World"'
+                    }
+                    catch (e) {
+                        echo "The error is: ${e}"
+                    }
+                    finally {
+                        echo "This is the end of the TRY CATCH block"
+                    }
+                }
+            }
+        }
         stage ('building Parallel tasks') {
             parallel {
                 stage ('Task 1') {
