@@ -51,13 +51,13 @@ pipeline {
             steps {
                 echo "This is an empty stage"
             }
+        }
         stage ('CATCHERRO') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'exit 1'
                 }
             }
-        }
         }
         stage ('building Parallel tasks') {
             parallel {
