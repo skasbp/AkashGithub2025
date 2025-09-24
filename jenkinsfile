@@ -73,7 +73,7 @@ pipeline {
                     steps {
                         Branch: "${env.CHECKOUT_BRNACH}"
                         Credentials: "${env.GIT_CREDS}"
-                        giturl: "${params.GIT_PARAM_URL}"
+                        giturl: "${env.GIT_URL}"
                     }
                 }
                 stage ('Linux Syntax') {
