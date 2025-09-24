@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         choice(
-            name: 'GIT_URL',
+            name: 'GIT_PARAM_URL',
             choices: [
                 'https://github.com/skasbp/AkashGithub2025.git',
                 'User1',
@@ -69,7 +69,7 @@ pipeline {
                     steps {
                         Branch: "${env.CHECKOUT_BRNACH}",
                         Credentials: "${env.GIT_CREDS}",
-                        giturl: "${env.GIT_URL}"
+                        giturl: "${param.GIT_PARAM_URL}"
                     }
                 }
                 stage ('Linux Syntax') {
