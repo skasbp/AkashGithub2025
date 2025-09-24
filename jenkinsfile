@@ -1,7 +1,17 @@
+}
 pipeline {
     agent any
     parameters {
-        choice(name: 'GIT_URL', choices: ['https://github.com/skasbp/AkashGithub2025.git', 'User1', 'User2', 'User3'], description: 'Choose the repo to checkout')
+        choice(
+            name: 'GIT_URL',
+            choices: [
+                'https://github.com/skasbp/AkashGithub2025.git',
+                'User1',
+                'User2',
+                'User3'
+            ],
+            description: 'Choose the repo to checkout'
+        )
     }
     environment {
         ABCD = "This is my first jenkins pipeline"
@@ -76,4 +86,4 @@ pipeline {
             }
         }
     }
-
+}
