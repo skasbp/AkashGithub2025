@@ -7,6 +7,10 @@ pipeline {
         GIT_CREDS = 'Akash@1994'
         CHECKOUT_BRNACH = 'main'
     }
+
+    parameters {
+         choice choices: ['https://github.com/skasbp/AkashGithub2025.git', 'User1', 'User2', 'User3'], description: 'Choose the repo to checkout', name: 'GIT _URL'
+    }
     stages{
         stage ('Checkout'){
             steps {
@@ -54,6 +58,10 @@ pipeline {
                     steps {
                         sh "echo ${env.ABCD}"
                         sh "echo ${env.TARGET}"
+                        branch: ${env.CHECKOUT_BRNACH}
+                        credentialsId: ${env.GIT_CREDS}
+                        url: ${env.GIT_URL}
+
                     }
                 }
                 stage ('Linux Syntax') {
