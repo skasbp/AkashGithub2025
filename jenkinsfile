@@ -67,8 +67,8 @@ pipeline {
                 }
                 stage ('Groovy Syntax') {
                     steps {
-                        Branch: "${env.CHECKOUT_BRNACH}",
-                        Credentials: "${env.GIT_CREDS}",
+                        Branch: "${env.CHECKOUT_BRNACH}"
+                        Credentials: "${env.GIT_CREDS}"
                         giturl: "${param.GIT_PARAM_URL}"
                     }
                 }
