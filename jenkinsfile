@@ -3,6 +3,9 @@ pipeline {
     environment {
         ABCD = "This is my first jenkins pipeline"
         TARGET = "DevOps Engineer"
+        GIT_URL = 'https://github.com/skasbp/AkashGithub2025.git'
+        GIT_CREDS = 'Akash@1994'
+        CHECKOUT_BRNACH = 'main'
     }
     stages{
         stage ('Checkout'){
