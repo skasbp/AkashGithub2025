@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        choice(name: 'GIT_URL', choices: ['https://github.com/skasbp/AkashGithub2025.git', 'User1', 'User2', 'User3'], description: 'Choose the repo to checkout')
+    }
     environment {
         ABCD = "This is my first jenkins pipeline"
         TARGET = "DevOps Engineer"
@@ -8,14 +11,13 @@ pipeline {
         CHECKOUT_BRNACH = 'main'
     }
 
-    parameters {
-         choice choices: ['https://github.com/skasbp/AkashGithub2025.git', 'User1', 'User2', 'User3'], description: 'Choose the repo to checkout', name: 'GIT _URL'
-    }
+
     stages{
         stage ('Checkout'){
             steps {
                 git branch: 'main', credentialsId: 'Akash@1994', url: 'https://github.com/skasbp/AkashGithub2025.git'
                 sh 'echo "Welcome to my world"'
+
             }
         }
         stage ('Build 1'){
@@ -58,10 +60,9 @@ pipeline {
                     steps {
                         sh "echo ${env.ABCD}"
                         sh "echo ${env.TARGET}"
-                        branch: ${env.CHECKOUT_BRNACH}
-                        credentialsId: ${env.GIT_CREDS}
-                        url: ${env.GIT_URL}
-
+                        sh "echo Branch: ${env.CHECKOUT_BRNACH}"
+                        sh "echo Credentials: ${env.GIT_CREDS}"
+                        sh "echo URL: ${env.GIT_URL}"
                     }
                 }
                 stage ('Linux Syntax') {
@@ -75,4 +76,4 @@ pipeline {
             }
         }
     }
-}
+
