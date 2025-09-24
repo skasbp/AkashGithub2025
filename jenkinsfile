@@ -19,7 +19,10 @@ pipeline {
         GIT_CREDS = 'Akash@1994'
         CHECKOUT_BRNACH = 'main'
     }
-
+    triggers {
+        pollSCM('H/5 * * * *')
+        cron('H/15 * * * 1-5')
+    }
 
     stages{
         stage ('Checkout'){
