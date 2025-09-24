@@ -71,17 +71,20 @@ pipeline {
                 }
                 stage ('Groovy Syntax') {
                     steps {
-                        Branch: "${env.CHECKOUT_BRNACH}"
-                        Credentials: "${env.GIT_CREDS}"
-                        giturl: "${env.GIT_URL}"
+                        Branch: "${env.CHECKOUT_BRNACH}",
+                        Credentials: "${env.GIT_CREDS}",
+                        giturl: "${params.GIT_PARAM_URL}"
                     }
                 }
                 stage ('Linux Syntax') {
                     steps {
-                        sh '''
+                        sh """
                             echo $ABCD
                             echo $TARGET
-                            '''
+                            echo ${params.GIT_PARAM_URL}
+                            echo ${env.GIT_CREDS}
+                            echo ${env.CHECKOUT_BRNACH}
+                            """
                     }
                 }
             }
